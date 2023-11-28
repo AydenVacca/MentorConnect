@@ -1,51 +1,47 @@
-package MentorConnect;
+package com.group4.MentorConnect.model;
 
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
 
-public abstract class User {
+@Getter
+@Entity
+public class User {
+    // Getters
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String email;
+    private String password;
+    private String role; // "mentee" or "mentor
 
-    //Variables
-    private int userID;
-    private List<ForumPost> favoritedForums;
-    private List<Comment> comments;
+    // Default constructor
+    public User() {}
 
-    //Constructor
-    public User(int userID) {
-        this.userID = userID;
+    // Parameterized constructor (optional)
+    public User(String email, String password, String role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
-    //Getter for userID
-    public int getUserID() {
-        return userID;
+    // Setters
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    //Setter for userID
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    //Getter for favoritedForums
-    public List<ForumPost> getFavoritedForums() {
-        return favoritedForums;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    //Setter for favoritedForums
-    public void setFavoritedForums(List<ForumPost> favoritedForums) {
-        this.favoritedForums = favoritedForums;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    //Getter for comments
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    //Setter for comments
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-    
-    //not sure implementation for this yet
-    public abstract boolean login();
-    public abstract void logout();
-    public abstract void updateProfile();
 }
